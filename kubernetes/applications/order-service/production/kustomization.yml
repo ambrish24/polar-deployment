@@ -2,24 +2,24 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - github.com/ambrish24/order-service/k8s?ref=main
+- github.com/ambrish24/order-service/k8s?ref=main
 
 patchesStrategicMerge:
-  - patch-env.yml
-  - patch-resources.yml
-  - patch-volumes.yml
+- patch-env.yml
+- patch-resources.yml
+- patch-volumes.yml
 
 configMapGenerator:
-  - behavior: merge
-    files:
-      - application-prod.yml
-    name: order-config
+- behavior: merge
+  files:
+  - application-prod.yml
+  name: order-config
 
 images:
-  - name: order-service
-    newName: ghcr.io/ambrish24/order-service
-    newTag: latest
+- name: order-service
+  newName: ghcr.io/ambrish24/order-service
+  newTag: 2d723d57d1c6db4dc75437a9f765991d56e64696
 
 replicas:
-  - count: 1
-    name: order-service
+- count: 1
+  name: order-service
